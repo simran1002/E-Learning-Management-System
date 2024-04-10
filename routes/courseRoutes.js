@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const courseController = require('../controllers/courseController');
 const { authenticateToken, superadminOnly } = require('../middlewares/authMiddleware');
-const courseFiltersPaginationController = require('../controllers/courseFiltersPagination/courseFiltersPaginationController');
+const courseFiltersPaginationController = require('../controllers/courseFiltersPaginationController');
 
 // Get Courses with Filtering and Pagination
 router.get('/', courseController.getCourses);

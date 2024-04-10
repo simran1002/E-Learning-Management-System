@@ -1,4 +1,4 @@
-const Course = require('../../models/Course');
+const Course = require('../models/Course');
 
 const filterCourses = async (req, res) => {
   try {

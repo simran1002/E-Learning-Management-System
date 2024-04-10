@@ -4,8 +4,8 @@ const app = express();
 const userRegistrationRoutes = require('./routes/userRegistrationRoutes');
 const userProfileRoutes = require('./routes/userProfileRoutes');
 const courseRoutes = require('./routes/courseRoutes');
-const courseFiltersPaginationRoutes = require('./routes/courseFiltersPagination/courseFiltersPaginationRoutes');
-const errorHandlingMiddleware = require('./middleware/errorHandlingMiddleware');
+const courseFiltersPaginationRoutes = require('./routes/courseFiltersPaginationRoutes');
+const errorHandlingMiddleware = require('./middlewares/errorHandlingMiddleware');
 const logger = require('./logger');
 
 app.use(express.json());
@@ -22,21 +22,25 @@ mongoose.connect('mongodb://username:password@your-neon-database-url', {
 });
 
 // Routes
+// User Registration
 app.use('/api/users/register', userRegistrationRoutes);
-app.use('/api/users', userProfileRoutes);
-app.use('/api/courses', courseRoutes);
-app.use('/api/courses', courseFiltersPaginationRoutes);
 
+// User Profile Management
+app.use('/api/users', userProfileRoutes);
+
+// Course Management
+app.use('/api/courses', courseRoutes);
+
+// Course Filters and Pagination
+app.use('/api/courses', courseFiltersPaginationRoutes);
 
 // Error handling middleware
 app.use(errorHandlingMiddleware);
-
 
 // Start server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
 
 logger.info('Server started');
