@@ -1,5 +1,3 @@
-// routes/courseFiltersPagination/courseFiltersPaginationRoutes.js
-
 const express = require('express');
 const router = express.Router();
 const { filterCourses, paginateCourses } = require('../controllers/courseFiltersPaginationController');

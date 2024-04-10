@@ -1,4 +1,3 @@
-// database.js
 require('dotenv').config();
 const { Neon } = require('@neon-js/client');
 
