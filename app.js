@@ -11,15 +11,15 @@ const logger = require('./logger');
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect('mongodb://username:password@your-neon-database-url', {
+mongoose.connect('mongodb+srv://simranyadav464:kxZr0rPFpNF9rYHa@cluster0.gylkfug.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true,
 }).then(() => {
   console.log('Connected to MongoDB');
 }).catch((err) => {
   console.error('Error connecting to MongoDB', err);
 });
+
 
 // Routes
 // User Registration
