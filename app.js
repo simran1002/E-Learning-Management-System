@@ -1,26 +1,17 @@
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
-const authRoutes = require('./routes/authRoutes');
-const userRoutes = require('./routes/userRoutes');
+const app = express();
+const userRegistrationRoutes = require('./routes/userRegistrationRoutes');
+const userProfileRoutes = require('./routes/userProfileRoutes');
 const courseRoutes = require('./routes/courseRoutes');
+const courseFiltersPaginationRoutes = require('./routes/courseFiltersPagination/courseFiltersPaginationRoutes');
+const errorHandlingMiddleware = require('./middleware/errorHandlingMiddleware');
+const logger = require('./logger');
 
-// Middleware
 app.use(express.json());
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/courses', courseRoutes);
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
-
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/elearning', {
+mongoose.connect('mongodb://username:password@your-neon-database-url', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -30,8 +21,22 @@ mongoose.connect('mongodb://localhost:27017/elearning', {
   console.error('Error connecting to MongoDB', err);
 });
 
+// Routes
+app.use('/api/users/register', userRegistrationRoutes);
+app.use('/api/users', userProfileRoutes);
+app.use('/api/courses', courseRoutes);
+app.use('/api/courses', courseFiltersPaginationRoutes);
+
+
+// Error handling middleware
+app.use(errorHandlingMiddleware);
+
+
 // Start server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+
+logger.info('Server started');
