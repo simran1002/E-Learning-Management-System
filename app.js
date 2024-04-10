@@ -1,4 +1,3 @@
-// app.js
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
@@ -6,7 +5,7 @@ const userProfileRoutes = require('./routes/userProfileRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const courseFiltersPaginationRoutes = require('./routes/courseFiltersPaginationRoutes');
 const enrollmentRoutes = require('./routes/enrollmentRoutes');
-const authRoutes = require('./routes/authRoutes'); // Import authRoutes
+const authRoutes = require('./routes/authRoutes');
 const errorHandlingMiddleware = require('./middlewares/errorHandlingMiddleware');
 const logger = require('./logger');
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('../middlewares/authMiddleware'); // Corrected path
-const userController = require('../controllers/userController'); // Import userController
+const authMiddleware = require('../middlewares/authMiddleware');
+const userController = require('../controllers/userController'); 
 
 router.get('/:userId', authMiddleware.authenticateToken, userController.getUserById);
 
