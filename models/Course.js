@@ -17,8 +17,7 @@ const courseSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true
-  },
-  // Add other course properties as needed
+  }
 });
 
 // Create the Course model

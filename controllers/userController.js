@@ -15,7 +15,7 @@ const getUserById = async (req, res) => {
 const updateUserProfile = async (req, res) => {
   try {
     const { name, email, profilePicture } = req.body;
-    const userId = req.user.id; // User ID from JWT payload
+    const userId = req.user.id; 
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
